@@ -9,3 +9,4 @@
 
 # To-Do List
 * switch over to `profanity-filter` from `profanity` once `spacy` is fixed
+* make a separate file for all the functions [like in awaaz](https://raw.githubusercontent.com/ansarirayyan/awaaz/master/python/actions.py)
