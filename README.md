@@ -4,5 +4,8 @@
 # Usage
 
 * `sultanim spam` will spam the chat a bit
-* `sultanim anti-fbi` will give an attempt to free itself from any legal trouble on its own behalf
-* profanity checker enabled by default (as of now, no way to turn it off w/o mingling with the code, which you are free to do)
+* `sultanim anti-fbi` will attempt to free the user who executes it of any legal trouble
+* automatic profanity manager which censors cuss words from messages and posts a warning
+
+# To-Do List
+* switch over to `profanity-filter` from `profanity` once `spacy` is fixed
