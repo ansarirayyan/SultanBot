@@ -1,4 +1,5 @@
 import discord
+from profanity import profanity
 
 client = discord.Client()
 
@@ -18,5 +19,8 @@ async def on_message(message):
             i = i + 1
     if message.content.startswith('sultanim anti-fbi'):
         await message.channel.send("In case of an investigation by a federal or local authority, I do not include myself in any groups mentioned or condone any of the actions or language used in this establishment. I am simply a third-party bystander.")
+
+    if profanity.contains_profanity(message.content):
+        await message.channel.send("Ey Köpekler, do not mix with the wolves for that they eat the jackals.") # For the record, I am not of Turkish origin
 
 client.run('') # GET RID OF THIS BEFORE PUSHING!!!!!!!!!!!!!
