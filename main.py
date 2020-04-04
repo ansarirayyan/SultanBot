@@ -1,13 +1,15 @@
 import discord
-from profanity import profanity
-# from actions import spam
+from profanity_filter import ProfanityFilter
 
 client = discord.Client()
+
+pf = ProfanityFilter()
+
+pf.censor_char = '@'
 
 @client.event
 async def on_ready():
     print('We have logged in as {0.user}'.format(client))
-    await message.channel.send("DESTUR! SULTAN SALAHUDDEEN AS-STEVE EL-BOWMAN EL-HAJI HAN HAZRETLERI!")
 
 @client.event
 async def on_message(message):
@@ -32,10 +34,10 @@ async def on_message(message):
     if message.content.startswith('sultanim anti-fbi'):
         await message.channel.send("In case of an investigation by a federal or local authority, " + message.author.mention + " does not include himself/herself in any groups mentioned or condones any of the actions or language used in this establishment. " + message.author.mention + " is simply a third-party bystander.")
 
-    if profanity.contains_profanity(message.content):
+    if pf.is_profane(message.content):
         await message.delete()
-        await message.channel.send(str(message.author) + ": " + profanity.censor(str(message.content)))
-        print(profanity.censor(str(message.content)))
+        await message.channel.send(str(message.author) + ": " + pf.censor(str(message.content)))
+        print(pf.censor(str(message.content)))
         await message.channel.send("Ey " + message.author.mention + ", do not mix with the wolves for that they eat the jackals.") # For the record, I am not of Turkish origin
 
-client.run('') # GET RID OF THIS BEFORE PUSHING!!!!!!!!!!!!!
+client.run('Njk1NTI0MzA1NzczMjY0OTg3.XogQuw.uaoEQRi_Pib4COs2FsgRJT2Gjkw') # GET RID OF THIS BEFORE PUSHING!!!!!!!!!!!!!
