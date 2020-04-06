@@ -8,6 +8,7 @@ pf = ProfanityFilter()
 # profanity-filter settings
 pf.censor_char = '@'
 #pf.censor_whole_words = False
+pf.extra_profane_word_dictionaries = {'en': {'dumbass'}}
 
 @client.event
 async def on_ready():
@@ -32,20 +33,40 @@ async def on_message(message):
             while (i <= 3):
                 await message.channel.send("SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! SPAM !!! ")
                 i = i + 1
-        else:
-            await message.channel.send("Something gone wrong. Contact mohdhaadiansari@gmail.com to get this resolved... Or not.")
     if message.content.startswith('sultanim anti-fbi'):
         await message.channel.send("In case of an investigation by a federal or local authority, " + message.author.mention + " does not include himself/herself in any groups mentioned or condones any of the actions or language used in this establishment. " + message.author.mention + " is simply a third-party bystander.")
 
     if pf.is_profane(message.content):
-        if ("screw" in message.content) or ("fart" in message.content):
+        if ("screw" in message.content) or ("fart" in message.content): # whitelisted terms
             pass
         else:
-            await message.delete()
-            await message.channel.send(str(message.author) + ": " + pf.censor(str(message.content)))
-            print(pf.censor(str(message.content)))
-            await message.channel.send(embed = discord.Embed(description = "Ey " + message.author.mention + ", do not mix with the wolves for that they eat the jackals.")) # For the record, I am not of Turkish origin
-            #embed_dict = embed.to_dict()
+            latestMsg = message.content
+            latestMsgArray = latestMsg.split() # technically it's not an array but a list but who cares also Geany doesn't have a quick way to Find and Replace like Atom
+            print(len(latestMsgArray))
+            i = len(latestMsgArray)
+            while (i > 0):
+                if pf.is_profane(latestMsgArray[i-1]) == True:
+                    await message.delete()
+                    lsWordIndex = list(latestMsgArray[i-1])
+                    firstLetterOfWord = lsWordIndex[0]
+                    i2 = len(lsWordIndex)
+                    while (i2 > 0):
+                        lsWordIndex[i2 - 1] = "-"
+                        i2 = i2 - 1
+                    lsWordIndex[0] = firstLetterOfWord
+                    print (str(lsWordIndex))
+                    latestMsgArray[i-1] = ''.join(lsWordIndex)
+                    cleanMsg = ' '.join(latestMsgArray)
+                    await message.channel.send(str(message.author) + ": " + cleanMsg)
+                    print(pf.censor(str(message.content)))
+                    await message.channel.send(embed = discord.Embed(description = "Ey " + message.author.mention + ", do not mix with the wolves for that they eat the jackals.", color = discord.Color.red())) # For the record, I am not of Turkish origin
+                else:
+                    pass
+                i = i - 1
+            #await message.delete()
+            #await message.channel.send(str(message.author) + ": " + pf.censor(str(message.content)))
+            #print(pf.censor(str(message.content)))
+            #await message.channel.send(embed = discord.Embed(description = "Ey " + message.author.mention + ", do not mix with the wolves for that they eat the jackals.", color = discord.Color.red())) # For the record, I am not of Turkish origin
             #embed_dict["color"] = f54b4b
 
     if message.content.startswith('sultanim khanos'):
@@ -57,4 +78,4 @@ async def on_message(message):
         else:
             await message.channel.send("Only KHANOS THE STRONGEST is allowed to execute this command")
 
-client.run('Njk1NTI0MzA1NzczMjY0OTg3.XoltUQ.7YMDEfqEnaVL4QPgVpFCOjVzkLg') # GET RID OF THIS BEFORE PUSHING!!!!!!!!!!!!!
+client.run('Njk1NTI0MzA1NzczMjY0OTg3.XorU2Q.ncmwYKc18lLVlvsWlKHALi_WW5s') # GET RID OF THIS BEFORE PUSHING!!!!!!!!!!!!! (but of course, I don't)
