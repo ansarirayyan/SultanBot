@@ -5,7 +5,9 @@ client = discord.Client()
 
 pf = ProfanityFilter()
 
+# profanity-filter settings
 pf.censor_char = '@'
+#pf.censor_whole_words = False
 
 @client.event
 async def on_ready():
@@ -15,6 +17,7 @@ async def on_ready():
 async def on_message(message):
     if message.author == client.user:
         return
+    #await message.channel.send("DESTUR! SULTAN SALAHUDDEEN ES-STEVE EL-BOWMAN HAN EL-HAJI HAZRETLERI!") # something gone wronf the last time I tried this THIS DOESN'T DO ANYTHING
 
     if message.content.startswith('sultanim spam'):
         if message.author.id != 405500127198052363:
@@ -35,11 +38,16 @@ async def on_message(message):
         await message.channel.send("In case of an investigation by a federal or local authority, " + message.author.mention + " does not include himself/herself in any groups mentioned or condones any of the actions or language used in this establishment. " + message.author.mention + " is simply a third-party bystander.")
 
     if pf.is_profane(message.content):
-        await message.delete()
-        await message.channel.send(str(message.author) + ": " + pf.censor(str(message.content)))
-        print(pf.censor(str(message.content)))
-        await message.channel.send("Ey " + message.author.mention + ", do not mix with the wolves for that they eat the jackals.") # For the record, I am not of Turkish origin
-        
+        if ("screw" in message.content) or ("fart" in message.content):
+            pass
+        else:
+            await message.delete()
+            await message.channel.send(str(message.author) + ": " + pf.censor(str(message.content)))
+            print(pf.censor(str(message.content)))
+            await message.channel.send(embed = discord.Embed(description = "Ey " + message.author.mention + ", do not mix with the wolves for that they eat the jackals.")) # For the record, I am not of Turkish origin
+            #embed_dict = embed.to_dict()
+            #embed_dict["color"] = f54b4b
+
     if message.content.startswith('sultanim khanos'):
         if message.author.id == 617827708289941524:
             i = 3
@@ -49,4 +57,4 @@ async def on_message(message):
         else:
             await message.channel.send("Only KHANOS THE STRONGEST is allowed to execute this command")
 
-client.run('Njk1NTI0MzA1NzczMjY0OTg3.XogoxA.RVmKiK-OdEyC4tiI81-uv51tprw') # GET RID OF THIS BEFORE PUSHING!!!!!!!!!!!!!
+client.run('Njk1NTI0MzA1NzczMjY0OTg3.XoltUQ.7YMDEfqEnaVL4QPgVpFCOjVzkLg') # GET RID OF THIS BEFORE PUSHING!!!!!!!!!!!!!

@@ -2,7 +2,6 @@
 [SultanBot](https://github.com/ansarirayyan/SultanBot/) is a Discord guild/server bot made using the [`discord.py`](https://discordpy.readthedocs.io/en/latest/) library. The aim of this project is to port all the awesome and non-redundant features of [awaaz](https://github.com/ansarirayyan/awaaz/) into what Discord might consider as a proper bot.
 
 # Behavior/Usage
-
 * `sultanim spam` will spam the chat a bit
 * `sultanim anti-fbi` will attempt to free the user who executes it of any legal trouble
 * automatic profanity manager which censors cuss words from messages and posts a warning
@@ -15,3 +14,4 @@ Register a `bot` token from the [Discord Developer Portal](https://discordapp.co
 * make a separate file for all the functions [like in awaaz](https://raw.githubusercontent.com/ansarirayyan/awaaz/master/python/actions.py)
 * mute after a certain amount of instances where the user in question uses profanity
 * implement the pool system in `profanity` with `profanity-filter`
+* change color of embed(s)
