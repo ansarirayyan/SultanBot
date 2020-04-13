@@ -37,39 +37,32 @@ async def on_message(message):
         await message.channel.send("In case of an investigation by a federal or local authority, " + message.author.mention + " does not include himself/herself in any groups mentioned or condones any of the actions or language used in this establishment. " + message.author.mention + " is simply a third-party bystander.")
 
     if pf.is_profane(message.content):
-        if ("screw" in message.content) or ("fart" in message.content) or ("damn" in message.content) or ("DAMN" in message.content) or ("gay" in message.content) or ("hell" in message.content) or ("HELL" in message.content): # whitelisted terms, yes ik words like dAmN won't be whitelisted but whatever also some of these words may not be what I personally consider to be not a bad word
-            pass
-        else:
-            latestMsg = message.content
-            latestMsgArray = latestMsg.split() # technically it's not an array but a list but who cares also Geany doesn't have a quick way to Find and Replace like Atom
-            print(len(latestMsgArray))
-            i = len(latestMsgArray)
-            await message.delete()
-            while (i > 0):
-                if pf.is_profane(latestMsgArray[i-1]) == True:
-                    # await message.delete()
-                    lsWordIndex = list(latestMsgArray[i-1]) # converts profane term to a list
-                    firstLetterOfWord = lsWordIndex[0]
-                    i2 = len(lsWordIndex)
-                    while (i2 > 0):
-                        lsWordIndex[i2 - 1] = "-"
-                        i2 = i2 - 1
-                    lsWordIndex[0] = firstLetterOfWord
-                    print (str(lsWordIndex))
-                    latestMsgArray[i-1] = ''.join(lsWordIndex)
-                    cleanMsg = ' '.join(latestMsgArray)
-                    #await message.channel.send(str(message.author) + ": " + cleanMsg)
-                    print(pf.censor(str(message.content)))
-                    # await message.channel.send(embed = discord.Embed(description = "Ey " + message.author.mention + ", do not mix with the wolves for that they eat the jackals.", color = discord.Color.red())) # For the record, I am not of Turkish origin
-                else:
-                    pass
+        latestMsg = message.content
+        latestMsgArray = latestMsg.split() # technically it's not an array but a list but who cares also Geany doesn't have a quick way to Find and Replace like Atom
+        print(len(latestMsgArray))
+        i = len(latestMsgArray)
+        await message.delete()
+        while (i > 0):
+            if ("screw" in latestMsgArray[i-1]) or ("fart" in latestMsgArray[i-1]) or ("damn" in latestMsgArray[i-1]) or ("DAMN" in latestMsgArray[i-1]) or ("gay" in latestMsgArray[i-1]) or ("hell" in latestMsgArray[i-1]) or ("HELL" in latestMsgArray[i-1]): # whitelisted terms, yes ik words like dAmN won't be whitelisted but whatever also some of these words may not be what I personally consider to be not a bad word
+                pass
                 i = i - 1
-            await message.channel.send(str(message.author) + ": " + cleanMsg)
-            #await message.delete()
-            #await message.channel.send(str(message.author) + ": " + pf.censor(str(message.content)))
-            #print(pf.censor(str(message.content)))
-            #await message.channel.send(embed = discord.Embed(description = "Ey " + message.author.mention + ", do not mix with the wolves for that they eat the jackals.", color = discord.Color.red())) # For the record, I am not of Turkish origin
-            #embed_dict["color"] = f54b4b
+            elif pf.is_profane(latestMsgArray[i-1]) == True:
+                lsWordIndex = list(latestMsgArray[i-1]) # converts profane term to a list
+                firstLetterOfWord = lsWordIndex[0]
+                i2 = len(lsWordIndex)
+                while (i2 > 0):
+                    lsWordIndex[i2 - 1] = "-"
+                    i2 = i2 - 1
+                lsWordIndex[0] = firstLetterOfWord
+                print (str(lsWordIndex))
+                latestMsgArray[i-1] = ''.join(lsWordIndex)
+                cleanMsg = ' '.join(latestMsgArray)
+                print(pf.censor(str(message.content)))
+            else:
+                pass
+            i = i - 1
+        await message.channel.send(str(message.author) + ": " + cleanMsg)
+        await message.channel.send(embed = discord.Embed(description = "Ey " + message.author.mention + ", do not mix with the wolves for that they eat the jackals.", color = discord.Color.red())) # For the record, I am not of Turkish origin
 
     if message.content.startswith('sultanim khanos'):
         if message.author.id == 617827708289941524:
@@ -80,4 +73,4 @@ async def on_message(message):
         else:
             await message.channel.send("Only KHANOS THE STRONGEST is allowed to execute this command")
 
-client.run('') 
+client.run('Njk1NTI0MzA1NzczMjY0OTg3.Xou7dQ.q6P6n1nIzuaPHKmcbCLLhvKUYAQ')
