@@ -41,11 +41,9 @@ async def on_message(message):
         latestMsgArray = latestMsg.split() # technically it's not an array but a list but who cares also Geany doesn't have a quick way to Find and Replace like Atom
         print(len(latestMsgArray))
         i = len(latestMsgArray)
-        await message.delete()
         while (i > 0):
             if ("screw" in latestMsgArray[i-1]) or ("fart" in latestMsgArray[i-1]) or ("damn" in latestMsgArray[i-1]) or ("DAMN" in latestMsgArray[i-1]) or ("gay" in latestMsgArray[i-1]) or ("hell" in latestMsgArray[i-1]) or ("HELL" in latestMsgArray[i-1]): # whitelisted terms, yes ik words like dAmN won't be whitelisted but whatever also some of these words may not be what I personally consider to be not a bad word
-                pass
-                i = i - 1
+                cleanMsg = ' '.join(latestMsgArray)
             elif pf.is_profane(latestMsgArray[i-1]) == True:
                 lsWordIndex = list(latestMsgArray[i-1]) # converts profane term to a list
                 firstLetterOfWord = lsWordIndex[0]
@@ -61,6 +59,7 @@ async def on_message(message):
             else:
                 pass
             i = i - 1
+        await message.delete()
         await message.channel.send(str(message.author) + ": " + cleanMsg)
         await message.channel.send(embed = discord.Embed(description = "Ey " + message.author.mention + ", do not mix with the wolves for that they eat the jackals.", color = discord.Color.red())) # For the record, I am not of Turkish origin
 
@@ -73,4 +72,4 @@ async def on_message(message):
         else:
             await message.channel.send("Only KHANOS THE STRONGEST is allowed to execute this command")
 
-client.run('Njk1NTI0MzA1NzczMjY0OTg3.Xou7dQ.q6P6n1nIzuaPHKmcbCLLhvKUYAQ')
+client.run('Njk1NTI0MzA1NzczMjY0OTg3.XpTbfA._Ee4OgZHFEyXd0hkgUNE2bgvpv4')
