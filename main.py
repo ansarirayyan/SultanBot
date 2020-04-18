@@ -8,7 +8,7 @@ pf = ProfanityFilter()
 # profanity-filter settings
 pf.censor_char = '@'
 #pf.censor_whole_words = False
-pf.extra_profane_word_dictionaries = {'en': {'dumbass'}}
+pf.extra_profane_word_dictionaries = {'en': {'dumbass', 'MOTHERFUCKERS', 'motherfuckers', 'benchod', 'madrachod', 'BENCHOD', 'MADRACHOD'}} # not case insensitive; should I add dhigger (the n word for Indians)... nah
 
 @client.event
 async def on_ready():
@@ -41,6 +41,7 @@ async def on_message(message):
         latestMsgArray = latestMsg.split() # technically it's not an array but a list but who cares also Geany doesn't have a quick way to Find and Replace like Atom
         print(len(latestMsgArray))
         i = len(latestMsgArray)
+        containgExceptionWordsOnly = True
         while (i > 0):
             if ("screw" in latestMsgArray[i-1]) or ("fart" in latestMsgArray[i-1]) or ("damn" in latestMsgArray[i-1]) or ("DAMN" in latestMsgArray[i-1]) or ("gay" in latestMsgArray[i-1]) or ("hell" in latestMsgArray[i-1]) or ("HELL" in latestMsgArray[i-1]): # whitelisted terms, yes ik words like dAmN won't be whitelisted but whatever also some of these words may not be what I personally consider to be not a bad word
                 cleanMsg = ' '.join(latestMsgArray)
@@ -56,12 +57,16 @@ async def on_message(message):
                 latestMsgArray[i-1] = ''.join(lsWordIndex)
                 cleanMsg = ' '.join(latestMsgArray)
                 print(pf.censor(str(message.content)))
+                containgExceptionWordsOnly = False
             else:
                 pass
             i = i - 1
-        await message.delete()
-        await message.channel.send(str(message.author) + ": " + cleanMsg)
-        await message.channel.send(embed = discord.Embed(description = "Ey " + message.author.mention + ", do not mix with the wolves for that they eat the jackals.", color = discord.Color.red())) # For the record, I am not of Turkish origin
+        if (containgExceptionWordsOnly == True):
+            pass
+        else:
+            await message.delete()
+            await message.channel.send(str(message.author) + ": " + cleanMsg)
+            await message.channel.send(embed = discord.Embed(description = "Ey " + message.author.mention + ", do not mix with the wolves for that they eat the jackals.", color = discord.Color.red())) # For the record, I am not of Turkish origin
 
     if message.content.startswith('sultanim khanos'):
         if message.author.id == 617827708289941524:
@@ -72,4 +77,4 @@ async def on_message(message):
         else:
             await message.channel.send("Only KHANOS THE STRONGEST is allowed to execute this command")
 
-client.run('Njk1NTI0MzA1NzczMjY0OTg3.XpTbfA._Ee4OgZHFEyXd0hkgUNE2bgvpv4')
+client.run('Njk1NTI0MzA1NzczMjY0OTg3.XpUCFQ.XBP-k-zH3JFoxJhveuNG_dOuy5k')
