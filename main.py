@@ -10,7 +10,7 @@ pf.extra_profane_word_dictionaries = {'en': {'dumbass', 'MOTHERFUCKERS', 'mother
 @client.event
 async def on_ready():
 	print('We have logged in as {0.user}'.format(client))
-	await client.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name="52 Stories by Omar Waseem and Ethan Chang on Spotify", title="52 Stories", color=discord.Color.green())) # only issue with this, it's going to be shown as online all the time even if its not
+	await client.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name="52 Stories by Omar Waseem on Spotify", title="52 Stories", color=discord.Color.green())) # selmshots left the podcast :(
 	#await client.change_presence(activity=discord.Spotify(type=discord.ActivityType.listening, name="Spotify", title="52 Stories"))
 	#await client.change_presence(activity=discord.Spotify(title="52 Stories"))
 
@@ -38,12 +38,12 @@ async def on_message(message):
 
 	if pf.is_profane(message.content):
 		latestMsg = message.content
-		latestMsgArray = latestMsg.split() # technically it's not an array but a list but who cares also Geany doesn't have a quick way to Find and Replace like Atom
+		latestMsgArray = latestMsg.split() # technically it's not an array but a list but who cares also Geany doesn't have a quick way to Find and Replace like Atom actually it does dumby but guess what too lazy to find it again
 		print(len(latestMsgArray))
 		i = len(latestMsgArray)
 		containgExceptionWordsOnly = True
-		while (i > 0):
-			if ("screw" in latestMsgArray[i-1]) or ("fart" in latestMsgArray[i-1]) or ("damn" in latestMsgArray[i-1]) or ("DAMN" in latestMsgArray[i-1]) or ("gay" in latestMsgArray[i-1]) or ("hell" in latestMsgArray[i-1]) or ("HELL" in latestMsgArray[i-1]) or ("nazi" in latestMsgArray[i-1]) or ("NAZI" in latestMsgArray[i-1]) or ("retarded" in latestMsgArray[i-1]) or ("RETARDED" in latestMsgArray[i-1]): # whitelisted terms, yes ik words like dAmN won't be whitelisted but whatever also some of these words may not be what I personally consider to be not a bad word
+		while (i > 0): # TODO: If the profane term is in quotes (is that the right, slang way to say it), then it censors everything after the first quotetion mark which is an issue THIS NEEDS TO BE FIXED
+			if ("screw" in latestMsgArray[i-1]) or ("fart" in latestMsgArray[i-1]) or ("damn" in latestMsgArray[i-1]) or ("DAMN" in latestMsgArray[i-1]) or ("gay" in latestMsgArray[i-1]) or ("hell" in latestMsgArray[i-1]) or ("HELL" in latestMsgArray[i-1]) or ("nazi" in latestMsgArray[i-1]) or ("NAZI" in latestMsgArray[i-1]) or ("retarded" in latestMsgArray[i-1]) or ("RETARDED" in latestMsgArray[i-1] or ("HELL" in latestMsgArray[i-1]) or ("SCREW" in latestMsgArray[i-1])): # whitelisted terms, yes ik words like dAmN won't be whitelisted but whatever also some of these words may not be what I personally consider to be not a bad word
 				cleanMsg = ' '.join(latestMsgArray)
 			elif pf.is_profane(latestMsgArray[i-1]) == True:
 				lsWordIndex = list(latestMsgArray[i-1]) # converts profane term to a list
@@ -105,13 +105,13 @@ async def on_message(message):
 			print("Purging " + number_str + " lines, excluding pinned messages (if any).")
 			newNumber = number + 1
 			messages = await message.channel.history(limit=newNumber).flatten()
-			print(messages)
+			#print(messages)
 			#i = len(messages) - 1
 			#while (i + 1) > 0:
 			i = 0
 			while i < len(messages):
 				msg = messages[i]
-				print(msg.pinned) # ok, so something def wrong with this thing, as its all saying false no matter what OH SHOOT JUST REALIZED SOMETHING I PUT MESSAGE NOT MSG MESSAGE IS ALWAYS GONNA BE BENIM AHMAK AAAAAAAA
+				#print(msg.pinned) # ok, so something def wrong with this thing, as its all saying false no matter what OH SHOOT JUST REALIZED SOMETHING I PUT MESSAGE NOT MSG MESSAGE IS ALWAYS GONNA BE BENIM AHMAK AAAAAAAA
 				if msg.pinned == False: # when chaning this to True; it goes to the else
 					#msg = messages[i]
 					await msg.delete()
