@@ -10,7 +10,7 @@ pf.extra_profane_word_dictionaries = {'en': {'dumbass', 'MOTHERFUCKERS', 'mother
 @client.event
 async def on_ready():
 	print('We have logged in as {0.user}'.format(client))
-	await client.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name="52 Stories by Omar Waseem on Spotify", title="52 Stories", color=discord.Color.green())) # selmshots left the podcast :(
+	await client.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name="52 Stories by Omar Waseem on Spotify and iTunes", title="52 Stories", color=discord.Color.green())) # selmshots left the podcast :(
 	#await client.change_presence(activity=discord.Spotify(type=discord.ActivityType.listening, name="Spotify", title="52 Stories"))
 	#await client.change_presence(activity=discord.Spotify(title="52 Stories"))
 
@@ -43,7 +43,7 @@ async def on_message(message):
 		i = len(latestMsgArray)
 		containgExceptionWordsOnly = True
 		while (i > 0): # TODO: If the profane term is in quotes (is that the right, slang way to say it), then it censors everything after the first quotetion mark which is an issue THIS NEEDS TO BE FIXED
-			if ("screw" in latestMsgArray[i-1]) or ("fart" in latestMsgArray[i-1]) or ("damn" in latestMsgArray[i-1]) or ("DAMN" in latestMsgArray[i-1]) or ("gay" in latestMsgArray[i-1]) or ("hell" in latestMsgArray[i-1]) or ("HELL" in latestMsgArray[i-1]) or ("nazi" in latestMsgArray[i-1]) or ("NAZI" in latestMsgArray[i-1]) or ("retarded" in latestMsgArray[i-1]) or ("RETARDED" in latestMsgArray[i-1] or ("HELL" in latestMsgArray[i-1]) or ("SCREW" in latestMsgArray[i-1])): # whitelisted terms, yes ik words like dAmN won't be whitelisted but whatever also some of these words may not be what I personally consider to be not a bad word
+			if ("screw" in latestMsgArray[i-1]) or ("fart" in latestMsgArray[i-1]) or ("damn" in latestMsgArray[i-1]) or ("DAMN" in latestMsgArray[i-1]) or ("gay" in latestMsgArray[i-1]) or ("hell" in latestMsgArray[i-1]) or ("HELL" in latestMsgArray[i-1]) or ("nazi" in latestMsgArray[i-1]) or ("NAZI" in latestMsgArray[i-1]) or ("retarded" in latestMsgArray[i-1]) or ("RETARDED" in latestMsgArray[i-1] or ("HELL" in latestMsgArray[i-1]) or ("SCREW" in latestMsgArray[i-1]) or ("Damn" in latestMsgArray[i-1]) or ("paki" in latestMsgArray[i-1]) or ("PAKI" in latestMsgArray[i-1])): # whitelisted terms, yes ik words like dAmN won't be whitelisted but whatever also some of these words may not be what I personally consider to be not a bad word also there really should be like a list or array or something rather than having a gazillion in statements
 				cleanMsg = ' '.join(latestMsgArray)
 			elif pf.is_profane(latestMsgArray[i-1]) == True:
 				lsWordIndex = list(latestMsgArray[i-1]) # converts profane term to a list
@@ -122,4 +122,4 @@ async def on_message(message):
 				i = i + 1
 			# await message.delete()
 
-client.run('')
+client.run('Njk1NTI0MzA1NzczMjY0OTg3.Xt1Xsg.XU3E2Vpr5lrprXsxVRYH0TmObss')
