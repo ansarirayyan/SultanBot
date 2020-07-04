@@ -33,7 +33,7 @@ If you are unable to get this to work, then please refer to the next sub-section
 ## Debugging
 * If you are facing an issue such as `discord.errors.Forbidden: 403 Forbidden (error code: 60003): Two factor is required for this operation`, then please refer to [this GitHub Issues post](https://github.com/discord/discord-api-docs/issues/69). In short, you need to enable two factor authentication on the account which owns the bot.
 * Upon running the program, you may receive missing module errors. Simply install the libraries mentioned.
-* After the successful installation of `profanity-filter`, one may still receive errors related to the `spacey` library. Simply refer to [this GitHub Issues page]. Append `sudo` to the beginning of both parts of the command if needed. Also, one might want to try replacing `python` with `py` if his or her platform that he or she wishes to deploy is that of Microsoft's Windows.
+* After the successful installation of `profanity-filter`, one may still receive errors related to the `spacey` library. Simply refer to [this GitHub Issues page](https://github.com/explosion/spaCy/issues/1721#issuecomment-368444483). Append `sudo` to the beginning of both parts of the command if needed. Also, one might want to try replacing `python` with `py` if his or her platform that he or she wishes to deploy is that of Microsoft's Windows.
 * If there is some unexpected behavior occuring related to the bad language filter, then please make sure that you did not install the "Deep Analysis" version of `profanity-filter`.
 
 If nothing here helps, then please [post an Issue](https://github.com/ansarirayyan/SultanBot/issues)!
