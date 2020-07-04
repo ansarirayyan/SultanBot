@@ -14,7 +14,7 @@ To add to your server, simply visit [this URL](https://discordapp.com/api/oauth2
 
 If you really insist on deploying this on your own (for whatever reason that may be, including me not hosting the bot anymore), then simply do as the following outlines.
 
-The first step is to register an application and obtain a Discord bot token from the [Discord Developer Portal](discordapp.com/developers/).
+The first step is to register an application and obtain a Discord bot token from the [Discord Developer Portal](https://discord.com/developers/applications).
 
 Please insert this bot token between the quotation marks of the `client.run()` statement, likely towards the end of `main.py`. 
 
