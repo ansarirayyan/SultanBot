@@ -65,7 +65,7 @@ async def on_message(message):
 		else:
 			await message.delete()
 			await message.channel.send(str(message.author) + ": " + cleanMsg)
-			await message.channel.send(embed = discord.Embed(description = "Ey " + message.author.mention + ", do not mix with the wolves for that they eat the jackals.", color = discord.Color.red())) # For the record, I am not of Turkish origin
+			# await message.channel.send(embed = discord.Embed(description = "Ey " + message.author.mention + ", do not mix with the wolves for that they eat the jackals.", color = discord.Color.red())) # For the record, I am not of Turkish origin
 
 	if message.content.startswith('sultanim khanos'):
 		if message.author.id == 617827708289941524:
