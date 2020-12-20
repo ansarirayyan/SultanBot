@@ -31,7 +31,6 @@ async def on_message(message):
 
 		latestMsgLs = latestMsg.split()
 		latestMsgLsPreservedCase = latestMsgPreservedCase.split()
-		#print(len(latestMsgLs))
 
 		i = len(latestMsgLs)
 		containgExceptionWordsOnly = True
@@ -42,19 +41,12 @@ async def on_message(message):
 				lsWordIndex = list(latestMsgLsPreservedCase[i-1]) # converts profane term to a list
 				firstLetterOfWord = lsWordIndex[0]
 
-				print(latestMsgLs)
-				print(latestMsgLsPreservedCase)
-
 				i2 = len(lsWordIndex)
 				while (i2 > 0):
 					lsWordIndex[i2 - 1] = "-"
 					i2 = i2 - 1
 
 				lsWordIndex[0] = firstLetterOfWord
-
-				print(str(lsWordIndex))
-				print(type(latestMsgLs[i-1]))
-				print(type(latestMsgLsPreservedCase[i-1]))
 
 				latestMsgLsPreservedCase[i-1] = ''.join(lsWordIndex)
 				cleanMsg = ' '.join(latestMsgLsPreservedCase)
@@ -87,11 +79,9 @@ async def on_message(message):
 		number_str = cmdReceived.replace ("sultanim purge ", "")
 		number = int(number_str)
 		if safepurge == False:
-			print("Purging " + number_str + " lines, including pinned messages (if any).")
 			await message.delete()
 			await message.channel.purge(limit=number)
 		elif safepurge == True:
-			print("Purging " + number_str + " lines, excluding pinned messages (if any).")
 			newNumber = number + 1
 			messages = await message.channel.history(limit=newNumber).flatten()
 			i = 0
@@ -99,8 +89,6 @@ async def on_message(message):
 				msg = messages[i]
 				if msg.pinned == False: # when chaning this to True; it goes to the else
 					await msg.delete()
-				else:
-					print("\nThe following message was supposed to be deleted: " + str(messages[i]) + "\n") # interesting, so not even realizing that it's pinned
 				i = i + 1
 
-client.run('')
+client.run('NzE4MTY4MTU0MDgxMDY3MTAw.Xtk8Ng.zMrZHrSUrb5SC3M5692LFQdd4lU')
