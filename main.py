@@ -1,9 +1,12 @@
 import discord
-from profanity_filter import ProfanityFilter
+#from profanity_filter import ProfanityFilter
 
-client = discord.Client()
+intents = discord.Intents.default()
+intents.message_content = True
 
-pf = ProfanityFilter()
+client = discord.Client(intents=intents)
+
+#pf = ProfanityFilter()
 
 @client.event
 async def on_ready():
@@ -22,43 +25,6 @@ async def on_message(message):
 			i = i + 1
 	if message.content.startswith('sultanim anti-fbi'):
 		await message.channel.send("In case of an investigation by a federal or local authority, " + message.author.mention + " does not include himself/herself in any groups mentioned or condones any of the actions or language used in this establishment. " + message.author.mention + " is simply a third-party bystander.")
-
-	if pf.is_profane(message.content):
-		latestMsg = message.content
-
-		latestMsgPreservedCase = latestMsg
-		latestMsg = latestMsg.lower()
-
-		latestMsgLs = latestMsg.split()
-		latestMsgLsPreservedCase = latestMsgPreservedCase.split()
-
-		i = len(latestMsgLs)
-		containgExceptionWordsOnly = True
-		while (i > 0): # TODO: If the profane term is in quotes (is that the right, slang way to say it), then it censors everything after the first quotetion mark which is an issue THIS NEEDS TO BE FIXED
-			if ("screw" in latestMsgLs[i-1]) or ("fart" in latestMsgLs[i-1]) or ("damn" in latestMsgLs[i-1]) or ("gay" in latestMsgLs[i-1]) or ("hell" in latestMsgLs[i-1]) or ("nazi" in latestMsgLs[i-1]) or ("retarded" in latestMsgLs[i-1]) or ("paki" in latestMsgLs[i-1]) or ("flipping" in latestMsgLs[i-1]): # whitelisted terms, yes ik words like dAmN won't be whitelisted but whatever also some of these words may not be what I personally consider to be not a bad word also there really should be like a list or array or something rather than having a gazillion in statements
-				cleanMsg = ' '.join(latestMsgLs)
-			elif pf.is_profane(latestMsgLs[i-1]) == True:
-				lsWordIndex = list(latestMsgLsPreservedCase[i-1]) # converts profane term to a list
-				firstLetterOfWord = lsWordIndex[0]
-
-				i2 = len(lsWordIndex)
-				while (i2 > 0):
-					lsWordIndex[i2 - 1] = "-"
-					i2 = i2 - 1
-
-				lsWordIndex[0] = firstLetterOfWord
-
-				latestMsgLsPreservedCase[i-1] = ''.join(lsWordIndex)
-				cleanMsg = ' '.join(latestMsgLsPreservedCase)
-				containgExceptionWordsOnly = False
-			else:
-				pass
-			i = i - 1
-		if (containgExceptionWordsOnly == True):
-			pass
-		else:
-			await message.delete()
-			await message.channel.send(str(message.author) + ": " + cleanMsg)
 
 	if message.content.startswith('sultanim khanos'):
 		if message.author.id == 617827708289941524:
@@ -91,4 +57,4 @@ async def on_message(message):
 					await msg.delete()
 				i = i + 1
 
-client.run('')
+client.run('Njk1NTI0MzA1NzczMjY0OTg3.GgZjQz.oJ5CBRwifmdCz57cB8Dp7drMjs6Lb8PxBve_A4')
