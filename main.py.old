@@ -49,12 +49,10 @@ async def on_message(message):
 			await message.channel.purge(limit=number)
 		elif safepurge == True:
 			newNumber = number + 1
-			#async for message in message.channel.history(limit=200):
-        	#		print("This is the message: ", message)
 			#messages = await message.channel.history(limit=newNumber)
-			messages = [message async for message in message.channel.history(limit=newNumber)]
+			messages = [message async for message in channel.history(limit=newNumber)]
 			print(messages)
-			# print("I think I am going to cry. I hate Python so much. Nevermind it was kinda my fault.")
+			print("I think I am going to cry. I hate Python so much.")
 			i = 0
 			while i < len(messages):
 				msg = messages[i]
@@ -62,4 +60,4 @@ async def on_message(message):
 					await msg.delete()
 				i = i + 1
 
-client.run('PROLLY SHOULD USE A CONFIG.JSON FILE OR MAYBYE .ENV BUT TOO LAZY RN')
+client.run('Njk1NTI0MzA1NzczMjY0OTg3.G3p7t_.QGMbhRgLUA2lPjLxrpt6ks8pyFwRFqdVbnHiSA')
